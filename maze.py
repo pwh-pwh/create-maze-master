@@ -2,9 +2,8 @@ import sys
 import matplotlib.pyplot as plt
 from random import randint
 import tkinter as tk
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg,NavigationToolbar2Tk #NavigationToolbar2TkAgg
-from matplotlib.figure import Figure
+# 图像对象
 f=None
 WIDTH  = 60
 HEIGHT = 40
@@ -66,7 +65,7 @@ def isValidPosition(x, y):
 		return False
 	else:
 		return True
-# 随机数
+# 打乱两数组内数据顺序
 def shuffle(dX, dY):
 	for t in range(4):
 		i = randint(0, 3)
@@ -91,6 +90,8 @@ def DFS(X, Y, edgeList, visited):
 
 
 def draw():
+	# 清除之前的画线
+	plt.clf()
 	f = plt.figure(1)
 	f1 = plt.subplot(111)
 	plt.axis('equal')

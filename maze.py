@@ -10,7 +10,6 @@ HEIGHT = 40
 # 全局变量
 input = None
 window = None
-sys.setrecursionlimit(WIDTH * HEIGHT)
 # 初始化已访问列表
 def initVisitedList():
 	visited = []
@@ -112,8 +111,15 @@ def show():
 	global HEIGHT
 	global WIDTH
 
-	WIDTH=int(input.get().split(',')[0])
-	HEIGHT=int(input.get().split(',')[1])
+	try:
+		WIDTH = int(input.get().split(',')[0])
+		HEIGHT = int(input.get().split(',')[1])
+	except Exception as e:
+		tk.messagebox.showerror(title='error', message='你输入的格式有误，请检查格式')
+		return
+	if WIDTH <= 0 or HEIGHT <= 0:
+		tk.messagebox.showerror(title='error', message='你输入的参数大小有误，请检查是否大于0')
+		return
 
 	mainFrame= tk.Frame(window)
 	f = draw()
